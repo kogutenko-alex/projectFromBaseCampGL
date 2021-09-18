@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group 'com.globallogic'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.globallogic.jconsole.JmxServer'
+        )
+    }
+}
