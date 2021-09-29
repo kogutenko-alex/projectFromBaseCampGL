@@ -18,8 +18,10 @@ public class DivisionCommand implements Command {
     public void execute(Memory memory) {
         Double el1 = memory.takeOperand().getNumber();
         Double el2 = memory.takeOperand().getNumber();
-        if(el1 == 0) throw new ZeroDivisionException();
-        memory.setOperands(new Number(el2 / el1));
+        int el1_ = el1.intValue();
+        int el2_ = el2.intValue();
+        if(el1_ == 0) throw new ZeroDivisionException();
+        memory.setOperands(new Number(el2_ / el1_));
     }
 
 }
