@@ -1,0 +1,17 @@
+ua/kogutenko/algorithms/checking/CheckingWords.java
+ ua.kogutenko.algorithms.checking.CheckingWords
+ua/kogutenko/algorithms/algorithms/BinarySearchTree.java
+ ua.kogutenko.algorithms.algorithms.BinarySearchTree
+ ua.kogutenko.algorithms.algorithms.BinarySearchTree$Node
+ua/kogutenko/algorithms/checking/CheckingWordsByBinarySearchTree.java
+ ua.kogutenko.algorithms.checking.CheckingWordsByBinarySearchTree
+ua/kogutenko/algorithms/checking/CheckingWordsByTrie.java
+ ua.kogutenko.algorithms.checking.CheckingWordsByTrie
+ua/kogutenko/algorithms/checking/CheckingWordsByHashMap.java
+ ua.kogutenko.algorithms.checking.CheckingWordsByHashMap
+ua/kogutenko/algorithms/algorithms/Trie.java
+ ua.kogutenko.algorithms.algorithms.Trie
+ua/kogutenko/algorithms/algorithms/HashMap.java
+ ua.kogutenko.algorithms.algorithms.HashMap
+ua/kogutenko/algorithms/StartToCheckTexts.java
+ ua.kogutenko.algorithms.StartToCheckTexts
