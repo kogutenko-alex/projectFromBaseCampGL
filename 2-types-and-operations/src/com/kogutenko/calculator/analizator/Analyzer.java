@@ -28,12 +28,12 @@ public class Analyzer {
                                             "(?=[^0-9]+)");
         ArrayList<String> tokens = new ArrayList<>(Arrays.asList(str));
         for(int i = 0; i < tokens.size(); i++) {
-            if(i == tokens.size() - 1) { break; }
-            else if (tokens.get(i).equals("(")) {continue;}
-            else if (tokens.get(i).equals(")")) {continue;}
-            else if (tokens.get(i).equals(tokens.get(i + 1))) {
-                tokens.set(i, tokens.get(i) + tokens.remove(i + 1));
-            }
+                if(i == tokens.size() - 1) { break; }
+                else if (tokens.get(i).equals("(")) {continue;}
+                else if (tokens.get(i).equals(")")) {continue;}
+                else if (tokens.get(i).equals(tokens.get(i + 1))) {
+                    tokens.set(i, tokens.get(i) + tokens.remove(i + 1));
+                }
         }
         executor.register(tokens, memory);
         return executor;
