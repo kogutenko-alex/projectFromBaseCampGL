@@ -1,7 +1,6 @@
 package com.kogutenko.calculator;
 
 import com.kogutenko.calculator.analizator.Analyzer;
-import com.kogutenko.calculator.analizator.Analyzer;
 import com.kogutenko.calculator.exception.NoSuchBracketsException;
 import com.kogutenko.calculator.executor.CommandExecutor;
 import com.kogutenko.calculator.memory.Memory;
