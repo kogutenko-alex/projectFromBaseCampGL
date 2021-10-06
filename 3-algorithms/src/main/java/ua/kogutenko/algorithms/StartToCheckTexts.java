@@ -43,14 +43,15 @@ public class StartToCheckTexts {
             for (Path dictionary : dictionaries) {
                 process.setDictionary(dictionary.toFile());
                 for (Path text : texts) {
+                    System.out.println("Text: " + text.toFile().getName());
                     process.setText(text.toFile());
-                    //System.out.println(process.searchingByBST());
+                    System.out.println(process.searchingByBST());
                     System.out.println(process.searchingByTrie());
-                    //System.out.println(process.searchingByHashMap());
+                    System.out.println(process.searchingByHashMap());
                 }
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

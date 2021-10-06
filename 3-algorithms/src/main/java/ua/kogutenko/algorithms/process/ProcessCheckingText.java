@@ -5,8 +5,9 @@ import ua.kogutenko.algorithms.algorithms.Trie;
 import ua.kogutenko.algorithms.checking.CheckingWords;
 
 import java.io.*;
+import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.Scanner;
-import java.util.concurrent.TransferQueue;
 
 public class ProcessCheckingText implements CheckingWords {
     File dictionaries;
@@ -68,9 +69,6 @@ public class ProcessCheckingText implements CheckingWords {
             }
             txt = System.currentTimeMillis() - temp;
             BTS.deleteTree();
-            if (BTS.isEmpty()) {
-                System.out.println("Dictionary is empty");
-            } else System.out.println("Dictionary is NOT empty");
             dictReader.close();
             scanDict.close();
             textReader.close();
@@ -80,7 +78,13 @@ public class ProcessCheckingText implements CheckingWords {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "binary_search_tree: " + dict + " " + txt + " " + allWords + " " + invalidWords;
+        String str = String.format("%-18s: %-8s %-8s %-7d %-7d",
+                "binary_search_tree",
+                new DecimalFormat("#0.00").format(dict),
+                new DecimalFormat("#0.00").format(txt),
+                allWords,
+                invalidWords);
+        return str;
     }
 
     public String searchingByTrie() {
@@ -90,7 +94,7 @@ public class ProcessCheckingText implements CheckingWords {
             FileReader dictReader = new FileReader(dictionaries);
             Scanner scanDict = new Scanner(dictReader);
             Trie trie = new Trie();
-
+            long i = 0;
             temp = System.currentTimeMillis();
             while(scanDict.hasNextLine()) {
                 trie.insert(scanDict.nextLine());
@@ -106,7 +110,7 @@ public class ProcessCheckingText implements CheckingWords {
                 String[] words = line.split("\\s");
                 for (String word : words) {
                     allWords++;
-                    if(word.equals(trie.search(word))) {
+                    if(trie.search(word)) {
                         knownWriter.write(word + "\n");
                     } else {
                         invalidWords++;
@@ -124,10 +128,62 @@ public class ProcessCheckingText implements CheckingWords {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "trie: " + dict + " " + txt + " " + allWords + " " + invalidWords;
+        String str = String.format("%-18s: %-8s %-8s %-7d %-7d",
+                "trie",
+                new DecimalFormat("#0.00").format(dict),
+                new DecimalFormat("#0.00").format(txt),
+                allWords,
+                invalidWords);
+        return str;
     }
 
     public String searchingByHashMap() {
-        return null;
+        double dict = 0, txt = 0, temp = 0;
+        long allWords = 0, invalidWords = 0;
+        try {
+            FileReader dictReader = new FileReader(dictionaries);
+            Scanner scanDict = new Scanner(dictReader);
+            HashMap<String,Integer> hashMap = new HashMap();
+            long i = 0;
+            temp = System.currentTimeMillis();
+            while(scanDict.hasNextLine()) {
+                hashMap.put(scanDict.nextLine(), 0);
+            }
+            dict = System.currentTimeMillis() - temp;
+            FileReader textReader = new FileReader(text);
+            Scanner scanText = new Scanner(textReader);
+            FileWriter unknownWriter = new FileWriter(unknown);
+            FileWriter knownWriter = new FileWriter(known);
+            temp = System.currentTimeMillis();
+            while (scanText.hasNextLine()) {
+                String line = scanText.nextLine().toLowerCase();
+                String[] words = line.split("\\s");
+                for (String word : words) {
+                    allWords++;
+                    if(hashMap.get(word) != null) {
+                        knownWriter.write(word + "\n");
+                    } else {
+                        invalidWords++;
+                        unknownWriter.write(word + "\n");
+                    }
+                }
+            }
+            txt = System.currentTimeMillis() - temp;
+            dictReader.close();
+            scanDict.close();
+            textReader.close();
+            scanText.close();
+            unknownWriter.close();
+            knownWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String str = String.format("%-18s: %-8s %-8s %-7d %-7d",
+                "hash_map",
+                new DecimalFormat("#0.00").format(dict),
+                new DecimalFormat("#0.00").format(txt),
+                allWords,
+                invalidWords);
+        return str;
     }
 }
