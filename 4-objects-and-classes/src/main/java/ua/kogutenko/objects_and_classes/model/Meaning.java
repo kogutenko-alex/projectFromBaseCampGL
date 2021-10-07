@@ -30,4 +30,17 @@ public class Meaning {
     public void setDefinitions(List<Definition> definitions) {
         this.definitions = definitions;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder(partOfSpeech + " - ");
+        for (Definition def : definitions) {
+            output.append(def.getDefinition()).append(";");
+        }
+        output.append("\t");
+        for (Definition def : definitions) {
+            output.append(def.getExample()).append(";");
+        }
+        return output.toString();
+    }
 }

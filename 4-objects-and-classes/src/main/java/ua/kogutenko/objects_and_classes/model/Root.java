@@ -1,8 +1,10 @@
 package ua.kogutenko.objects_and_classes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ua.kogutenko.objects_and_classes.annotation.Exclude;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,13 +14,14 @@ public class Root {
    @JsonProperty("phonetic")
    private String phonetic;
    @Exclude
-   @JsonProperty("phonetics")
    private List<Phonetic> phonetics;
    @Exclude
-   @JsonProperty("origin")
+   @JsonIgnore
    private String origin;
    @JsonProperty("meanings")
    private List<Meaning> meanings;
+
+   private List<String> examples;
 
    public Root(String word, String phonetic, List<Phonetic> phonetics, String origin, List<Meaning> meanings) {
       this.word = word;
@@ -66,5 +69,22 @@ public class Root {
 
    public void setMeanings(List<Meaning> meanings) {
       this.meanings = meanings;
+   }
+
+   public List<String> getExamples() {
+      List<String> examples = new ArrayList<>();
+      List<Meaning> meanings = getMeanings();
+      for (Meaning meaning : meanings) {
+         List<Definition> definitions = meaning.getDefinitions();
+         for (Definition definition : definitions) {
+            examples.add(definition.getExample());
+         }
+      }
+      return examples;
+   }
+
+   @Override
+   public String toString() {
+      return word;
    }
 }

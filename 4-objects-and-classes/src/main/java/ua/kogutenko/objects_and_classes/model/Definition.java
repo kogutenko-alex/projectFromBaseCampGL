@@ -1,5 +1,6 @@
 package ua.kogutenko.objects_and_classes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ua.kogutenko.objects_and_classes.annotation.Exclude;
 
@@ -11,10 +12,10 @@ public class Definition {
     @JsonProperty("example")
     private String example;
     @Exclude
-    @JsonProperty("synonyms")
+    @JsonIgnore
     private List<String> synonyms;
     @Exclude
-    @JsonProperty("antonyms")
+    @JsonIgnore
     private List<Object> antonyms;
 
     public Definition(String definition, String example, List<String> synonyms, List<Object> antonyms) {

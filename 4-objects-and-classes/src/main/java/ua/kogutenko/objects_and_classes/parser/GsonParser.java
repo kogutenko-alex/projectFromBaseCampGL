@@ -7,17 +7,17 @@ import ua.kogutenko.objects_and_classes.annotation.AnnotationExclusionStrategy;
 import ua.kogutenko.objects_and_classes.model.Root;
 
 import java.lang.reflect.Type;
-import java.util.Collection;
+import java.util.ArrayList;
 
 public class GsonParser {
-    public Collection<Root> parse (String responseBody) {
+    public ArrayList<Root> parse (String responseBody) {
         Gson gson = new GsonBuilder()
                 .setExclusionStrategies(new AnnotationExclusionStrategy())
                 .setLenient()
                 .create();
         try {
 
-            Type collectionType = new TypeToken<Collection<Root>>(){}.getType();
+            Type collectionType = new TypeToken<ArrayList<Root>>(){}.getType();
             return gson.fromJson(responseBody, collectionType);
 
         } catch (Exception err) {

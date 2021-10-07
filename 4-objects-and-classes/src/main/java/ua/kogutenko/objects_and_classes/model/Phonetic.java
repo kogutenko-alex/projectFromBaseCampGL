@@ -1,11 +1,14 @@
 package ua.kogutenko.objects_and_classes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import ua.kogutenko.objects_and_classes.annotation.Exclude;
 
 public class Phonetic {
     @JsonProperty("text")
     private String text;
-    @JsonProperty("audio")
+    @JsonIgnore
+    @Exclude
     private String audio;
 
     public Phonetic(String text, String audio) {
@@ -27,5 +30,10 @@ public class Phonetic {
 
     public void setAudio(String audio) {
         this.audio = audio;
+    }
+
+    @Override
+    public String toString() {
+        return text;
     }
 }
