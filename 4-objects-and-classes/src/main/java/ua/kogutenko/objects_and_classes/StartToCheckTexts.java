@@ -84,7 +84,9 @@ public class StartToCheckTexts {
     }
 
     private static ArrayList<Root> JsonStringLineToList (StringBuilder responseContent) {
-        return new GsonParser().parse(responseContent.toString().toLowerCase());
+        ArrayList<Root> roots = new GsonParser().parse(responseContent.toString().toLowerCase());
+
+        return roots;
     }
 
     private static boolean ListToCSV(List<ArrayList<Root>> dictionaryList, File dictionary) {
@@ -92,7 +94,7 @@ public class StartToCheckTexts {
               BufferedWriter bw = new BufferedWriter(fw);
               PrintWriter fileWriter = new PrintWriter(bw)) {
 
-            fileWriter.println("Word|Phonetic|Meanings|Examples\n\n");
+            fileWriter.println("Word,Phonetic,Meanings,Examples\n");
             for (ArrayList<Root> roots : dictionaryList){
                 CSVWriter.generateCSV(dictionary, roots);
             }

@@ -1,21 +1,13 @@
 package ua.kogutenko.objects_and_classes.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import ua.kogutenko.objects_and_classes.annotation.Exclude;
+import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
 public class Definition {
-    @JsonProperty("definition")
     private String definition;
-    @JsonProperty("example")
     private String example;
-    @Exclude
-    @JsonIgnore
     private List<String> synonyms;
-    @Exclude
-    @JsonIgnore
     private List<Object> antonyms;
 
     public Definition(String definition, String example, List<String> synonyms, List<Object> antonyms) {

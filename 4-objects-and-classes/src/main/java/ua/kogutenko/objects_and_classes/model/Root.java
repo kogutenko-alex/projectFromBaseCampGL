@@ -1,27 +1,14 @@
 package ua.kogutenko.objects_and_classes.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import ua.kogutenko.objects_and_classes.annotation.Exclude;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class Root {
-   @JsonProperty("word")
    private String word;
-   @JsonProperty("phonetic")
    private String phonetic;
-   @Exclude
    private List<Phonetic> phonetics;
-   @Exclude
-   @JsonIgnore
    private String origin;
-   @JsonProperty("meanings")
    private List<Meaning> meanings;
-
-   private List<String> examples;
 
    public Root(String word, String phonetic, List<Phonetic> phonetics, String origin, List<Meaning> meanings) {
       this.word = word;
@@ -63,24 +50,34 @@ public class Root {
       this.origin = origin;
    }
 
-   public List<Meaning> getMeanings() {
-      return meanings;
+   public String getMeanings() {
+      StringBuilder output = new StringBuilder();
+      for (Meaning meaning : meanings) {
+            output.append("\"" + meaning.getPartOfSpeech() + " - ");
+            for (Definition def : meaning.getDefinitions()) {
+               output.append(def.getDefinition()).append(";");
+            }
+            output.append("\"");
+      }
+      return output.toString();
    }
 
    public void setMeanings(List<Meaning> meanings) {
       this.meanings = meanings;
    }
 
-   public List<String> getExamples() {
-      List<String> examples = new ArrayList<>();
-      List<Meaning> meanings = getMeanings();
+   public String getExamples() {
+      StringBuilder builder = new StringBuilder();
+      List<Meaning> meanings = this.meanings;
+      builder.append("\"");
       for (Meaning meaning : meanings) {
          List<Definition> definitions = meaning.getDefinitions();
          for (Definition definition : definitions) {
-            examples.add(definition.getExample());
+            builder.append(definition.getExample() + ';');
          }
       }
-      return examples;
+      builder.append("\"");
+      return builder.toString();
    }
 
    @Override

@@ -1,13 +1,9 @@
 package ua.kogutenko.objects_and_classes.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 
 public class Meaning {
-    @JsonProperty("partOfSpeech")
     private String partOfSpeech;
-    @JsonProperty("definitions")
     private List<Definition> definitions;
 
     public Meaning(String partOfSpeech, List<Definition> definitions) {
@@ -31,16 +27,4 @@ public class Meaning {
         this.definitions = definitions;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder output = new StringBuilder(partOfSpeech + " - ");
-        for (Definition def : definitions) {
-            output.append(def.getDefinition()).append(";");
-        }
-        output.append("\t");
-        for (Definition def : definitions) {
-            output.append(def.getExample()).append(";");
-        }
-        return output.toString();
-    }
 }

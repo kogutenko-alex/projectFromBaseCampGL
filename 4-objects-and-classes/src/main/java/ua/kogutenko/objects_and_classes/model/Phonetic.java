@@ -1,14 +1,9 @@
 package ua.kogutenko.objects_and_classes.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import ua.kogutenko.objects_and_classes.annotation.Exclude;
+import com.google.gson.annotations.Expose;
 
 public class Phonetic {
-    @JsonProperty("text")
     private String text;
-    @JsonIgnore
-    @Exclude
     private String audio;
 
     public Phonetic(String text, String audio) {
