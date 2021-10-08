@@ -58,9 +58,8 @@ public class Root {
       for (Meaning meaning : meanings) {
             output.append(meaning.getPartOfSpeech() + " - ");
             for (Definition def : meaning.getDefinitions()) {
-               output.append(def.getDefinition()).append(". ");
+               output.append(def.getDefinition()).append(".\n");
             }
-
       }
       output.append("\"");
       return output.toString();
