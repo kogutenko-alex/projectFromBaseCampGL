@@ -95,6 +95,9 @@ public class StartToCheckTexts {
               PrintWriter fileWriter = new PrintWriter(bw)) {
 
             fileWriter.println("Word,Phonetic,Meanings,Examples\n");
+            fileWriter.close();
+            bw.close();
+            fw.close();
             for (ArrayList<Root> roots : dictionaryList){
                 CSVWriter.generateCSV(dictionary, roots);
             }

@@ -1,10 +1,12 @@
 package ua.kogutenko.objects_and_classes.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
 public class Meaning {
-    private String partOfSpeech;
-    private List<Definition> definitions;
+    @Expose private String partOfSpeech;
+    @Expose private List<Definition> definitions;
 
     public Meaning(String partOfSpeech, List<Definition> definitions) {
         this.partOfSpeech = partOfSpeech;

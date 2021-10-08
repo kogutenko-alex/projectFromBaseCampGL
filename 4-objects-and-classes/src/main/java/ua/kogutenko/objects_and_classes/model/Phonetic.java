@@ -3,7 +3,9 @@ package ua.kogutenko.objects_and_classes.model;
 import com.google.gson.annotations.Expose;
 
 public class Phonetic {
+    @Expose
     private String text;
+    @Expose(serialize = false)
     private String audio;
 
     public Phonetic(String text, String audio) {

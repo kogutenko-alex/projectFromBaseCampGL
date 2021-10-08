@@ -11,8 +11,7 @@ import java.util.ArrayList;
 public class GsonParser {
     public ArrayList<Root> parse (String responseBody) {
         Gson gson = new GsonBuilder()
-//                .excludeFieldsWithoutExposeAnnotation()
-//                .setPrettyPrinting()
+                .excludeFieldsWithoutExposeAnnotation()
                 .create();
         try {
             Type collectionType = new TypeToken<ArrayList<Root>>(){}.getType();

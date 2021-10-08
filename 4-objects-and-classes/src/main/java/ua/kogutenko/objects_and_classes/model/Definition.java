@@ -5,10 +5,10 @@ import com.google.gson.annotations.Expose;
 import java.util.List;
 
 public class Definition {
-    private String definition;
-    private String example;
-    private List<String> synonyms;
-    private List<Object> antonyms;
+    @Expose private String definition;
+    @Expose private String example;
+    @Expose(serialize = false) private List<String> synonyms;
+    @Expose(serialize = false) private List<Object> antonyms;
 
     public Definition(String definition, String example, List<String> synonyms, List<Object> antonyms) {
         this.definition = definition;

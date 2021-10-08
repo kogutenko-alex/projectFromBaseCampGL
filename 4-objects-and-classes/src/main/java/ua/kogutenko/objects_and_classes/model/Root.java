@@ -1,14 +1,16 @@
 package ua.kogutenko.objects_and_classes.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
 
 public class Root {
-   private String word;
-   private String phonetic;
-   private List<Phonetic> phonetics;
-   private String origin;
-   private List<Meaning> meanings;
+   @Expose private String word;
+   @Expose private String phonetic;
+   @Expose(serialize = false) private List<Phonetic> phonetics;
+   @Expose(serialize = false) private String origin;
+   @Expose private List<Meaning> meanings;
 
    public Root(String word, String phonetic, List<Phonetic> phonetics, String origin, List<Meaning> meanings) {
       this.word = word;
@@ -56,7 +58,7 @@ public class Root {
       for (Meaning meaning : meanings) {
             output.append(meaning.getPartOfSpeech() + " - ");
             for (Definition def : meaning.getDefinitions()) {
-               output.append(def.getDefinition()).append(";");
+               output.append(def.getDefinition()).append(". ");
             }
 
       }
