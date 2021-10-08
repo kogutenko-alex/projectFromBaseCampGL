@@ -52,10 +52,10 @@ public class CSVWriter {
 //                }
                 builder.append(str).append(',');
             }
-            builder.append("\n\n");
+            builder.deleteCharAt(builder.length() - 1);
+            builder.append("\n");
+            System.out.print(builder.toString());
         }
-        builder.deleteCharAt(builder.length() - 1);
-        System.out.println(builder.toString());
         return builder.toString();
     }
 

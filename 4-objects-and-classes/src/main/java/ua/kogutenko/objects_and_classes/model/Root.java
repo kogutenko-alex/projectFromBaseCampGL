@@ -52,13 +52,15 @@ public class Root {
 
    public String getMeanings() {
       StringBuilder output = new StringBuilder();
+      output.append("\"");
       for (Meaning meaning : meanings) {
-            output.append("\"" + meaning.getPartOfSpeech() + " - ");
+            output.append(meaning.getPartOfSpeech() + " - ");
             for (Definition def : meaning.getDefinitions()) {
                output.append(def.getDefinition()).append(";");
             }
-            output.append("\"");
+
       }
+      output.append("\"");
       return output.toString();
    }
 
