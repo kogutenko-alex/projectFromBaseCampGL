@@ -2,7 +2,7 @@ package ua.kogutenko.objects_and_classes;
 
 import ua.kogutenko.objects_and_classes.csv_writer.CSVWriter;
 import ua.kogutenko.objects_and_classes.model.Root;
-import ua.kogutenko.objects_and_classes.parser.GsonParser;
+import ua.kogutenko.objects_and_classes.parser.JsonToObject;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -59,8 +59,8 @@ public class StartToCheckTexts {
         while ((line = reader.readLine()) != null) {
             responseContent.append(line);
         }
-        ArrayList<Root> root = JsonStringLineToList(responseContent);
-        dictionary.add(root);
+        ArrayList<Root> roots = JsonStringLineToList(responseContent);
+        dictionary.add(roots);
         reader.close();
         return dictionary;
     }
@@ -84,7 +84,7 @@ public class StartToCheckTexts {
     }
 
     private static ArrayList<Root> JsonStringLineToList (StringBuilder responseContent) {
-        ArrayList<Root> roots = new GsonParser().parse(responseContent.toString().toLowerCase());
+        ArrayList<Root> roots = JsonToObject.converter(responseContent.toString());
 
         return roots;
     }

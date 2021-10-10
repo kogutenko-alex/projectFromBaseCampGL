@@ -19,6 +19,7 @@ public class CSVWriter {
                 }
             }
         }
+        builder.append("Examples").append(",");
         builder.deleteCharAt(builder.length()-1);
         String[] line = builder.toString().split(",");
         Arrays.sort(line, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
@@ -34,7 +35,7 @@ public class CSVWriter {
 
         for(Object d : data) {
             for (String field_  : line){
-                Method method = classType.getDeclaredMethod("get" + field_);
+                Method method = classType.getDeclaredMethod("g" + field_);
                 Object str = method.invoke(d);
 //                Field field = classType.getDeclaredField(field_.toLowerCase());
 //                field.setAccessible(true);
