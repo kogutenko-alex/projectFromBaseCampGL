@@ -37,20 +37,6 @@ public class CSVWriter {
             for (String field_  : line){
                 Method method = classType.getDeclaredMethod("g" + field_);
                 Object str = method.invoke(d);
-//                Field field = classType.getDeclaredField(field_.toLowerCase());
-//                field.setAccessible(true);
-//                Object obj = field.get(d);
-//                String str = null;
-//                if(obj != null) {
-//                    if (obj instanceof ArrayList) {
-//                        builder.append("\"");
-//                        for (Object s : (ArrayList)obj) {
-//                            str += s;
-//                        }
-//                        builder.append("\"");
-//                    }
-//                    str = obj.toString();
-//                }
                 builder.append(str).append(',');
             }
             builder.deleteCharAt(builder.length() - 1);

@@ -7,8 +7,7 @@ import javax.annotation.Generated;
 import java.io.Serializable;
 
 @Generated("jsonschema2pojo")
-public class Phonetic implements Serializable
-{
+public class Phonetic implements Serializable {
 
     @SerializedName("text")
     @Expose

@@ -109,8 +109,8 @@ public class StartToCheckTexts {
     }
 
     private static File getApplicationRootFile() {
-        URL url = StartToCheckTexts.class.getResource(".");
+        URL url = StartToCheckTexts.class.getClassLoader().getResource(".");
         String path = url.getPath();
-        return new File(path + "../../../../../../../");
+        return new File(path + "../../../../");
     }
 }
