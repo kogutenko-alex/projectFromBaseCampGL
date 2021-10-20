@@ -19,18 +19,27 @@ public class StartToCheckTexts {
         String rootFolder = getApplicationRootFile().getCanonicalPath();
 
         File dictionaryFile = new File(rootFolder + "\\dictionary.csv");
-        if ( dictionaryFile.createNewFile() ) System.out.println( "File is created!!!" );
-        else System.out.println( "File already exists!!!" );
+        if ( dictionaryFile.createNewFile() ) System.out.println( "File \"dictionary.csv\" is created!!!" );
+        else System.out.println( "File \"dictionary.csv\" already exists!!!" );
         Path knownWords = Paths.get(rootFolder + "\\words\\known.txt");
-        BigDecimal start = BigDecimal.valueOf(System.currentTimeMillis());
-        List<ArrayList<Root>> dictionaryList = creationListFromJsonRequest(knownWords);
-        BigDecimal finished = BigDecimal.valueOf(System.currentTimeMillis() - start.longValue());
-        System.out.println("Creation for " + finished.longValue() / 1000 / 60 + " min");
-        start = BigDecimal.valueOf(System.currentTimeMillis());
-        ListToCSV(dictionaryList, dictionaryFile);
-        finished = BigDecimal.valueOf(System.currentTimeMillis() - start.longValue());
-        System.out.println("Fill file for " + finished.longValue() + " sec");
-        System.out.println("End");
+        if (Files.exists(knownWords)) {
+            if (!isFileEmpty(knownWords.toFile())) {
+                BigDecimal start = BigDecimal.valueOf(System.currentTimeMillis());
+                List<ArrayList<Root>> dictionaryList = creationListFromJsonRequest(knownWords);
+                BigDecimal finished = BigDecimal.valueOf(System.currentTimeMillis() - start.longValue());
+                System.out.println("Creation for " + finished.longValue() / 1000 / 60 + " min");
+                start = BigDecimal.valueOf(System.currentTimeMillis());
+                ListToCSV(dictionaryList, dictionaryFile);
+                finished = BigDecimal.valueOf(System.currentTimeMillis() - start.longValue());
+                System.out.println("Fill file for " + finished.longValue() + " sec");
+                System.out.println("End");
+            } else System.out.println("File \"\\words\\known.txt\" is empty");
+        } else System.out.println("File \"\\words\\known.txt\" does not exist");
+
+    }
+
+    private static boolean isFileEmpty(File file) {
+        return file.length() == 0;
     }
 
     private static List<ArrayList<Root>> creationListFromJsonRequest (Path toCheckedWords) {
