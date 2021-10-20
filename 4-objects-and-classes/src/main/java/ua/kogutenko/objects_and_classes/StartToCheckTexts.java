@@ -47,18 +47,36 @@ public class StartToCheckTexts {
         List<ArrayList<Root>> dictionaryList = new LinkedList<>();
         try {
             List<String> words = fromFileToSortedList(toCheckedWords);
+            double amount = words.size();
+            double index = 1.0;
             for (String word : words) {
+                System.out.println("\b");
                 HttpURLConnection connection = connectionToApi(word);
                 if (connection.getResponseCode() < 299) {
                     addCheckedWordToList(connection, dictionaryList);
                 }
+                double percent = index++ / amount;
+                int whole = (int) percent;
+                int crushed = separationOfRemain(percent);
+                System.out.println(String.format("%3.%2", whole, crushed) + "% words are processed");
             }
+            System.out.println();
 
         } catch (Exception err) {
             err.printStackTrace();
         }
 
         return  dictionaryList;
+    }
+
+    public static int separationOfRemain(double someNumber) {
+        return Integer.parseInt(String.format("%.2f", someNumber).substring(
+                getCountsOfDigits((int) someNumber) + 1));
+    }
+
+    private static int getCountsOfDigits(long number) {
+        return (number == 0) ? 1 : (int) Math
+                .ceil(Math.log10(Math.abs(number) + 0.5));
     }
 
     private static List<ArrayList<Root>> addCheckedWordToList (HttpURLConnection connection, List<ArrayList<Root>> dictionary) throws IOException {
