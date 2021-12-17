@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: ua.kogutenko.objects_and_classes.StartToCheckTexts
+

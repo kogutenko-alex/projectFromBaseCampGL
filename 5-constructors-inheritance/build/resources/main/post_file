@@ -1,0 +1,19 @@
+POST /user HTTP/1.1
+User-Agent: PostmanRuntime/7.28.4
+Accept: */*
+Postman-Token: 61931eb4-0485-4d71-a068-5671b2dcd681
+Host: localhost:9090
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: multipart/form-data; boundary=--------------------------727610771787892613710760
+Content-Length: 278
+
+----------------------------727610771787892613710760
+Content-Disposition: form-data; name=""; filename="postUser.json"
+Content-Type: application/json
+
+{
+  "name": "Hello World",
+  "email": "hello.world@mail.com"
+}
+----------------------------727610771787892613710760--
